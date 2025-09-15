@@ -353,7 +353,7 @@ export default function Header() {
 
       {/* Mobile Bottom Loan Products */}
       <motion.div 
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-orange-500"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white shadow-t"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
