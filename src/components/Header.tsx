@@ -250,11 +250,11 @@ export default function Header() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
-                      whileHover={{ y: -2, backgroundColor: "#f5f5f5" }}
-                      className="group flex items-center space-x-2 px-4 py-2 bg-white transition-all duration-300"
+                      whileHover={{ y: -2, backgroundColor: "yellow" }}
+                      className="group flex items-center space-x-2 px-4 py-2 bg-[yellow] transition-all duration-300"
                     >
-                      <span className="text-orange-500 group-hover:text-orange-500">{product.icon}</span>
-                      <span className="text-sm font-medium text-gray-800 group-hover:text-orange-500 transition-colors duration-300">
+                      <span className="text-[red] group-hover:text-black">{product.icon}</span>
+                      <span className="text-sm font-medium text-[red] group-hover:text-black transition-colors duration-300">
                         {product.title}
                       </span>
                     </motion.button>
@@ -315,7 +315,7 @@ export default function Header() {
             backgroundColor: "#f97316"
           }}
           whileTap={{ scale: 0.9 }}
-          className="w-14 h-14 bg-black text-orange-500 border border-black hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
+          className="w-14 h-14 bg-white text-orange-500 border border-orange-500 hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
         >
           <FaBars size={16} />
         </motion.button>
@@ -345,7 +345,7 @@ export default function Header() {
             backgroundColor: "#f97316"
           }}
           whileTap={{ scale: 0.9 }}
-          className="w-14 h-14 bg-black text-orange-500 border border-black hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
+          className="w-14 h-14 bg-white text-orange-500 border border-orange-500 hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
         >
           <FaPhone size={16} />
         </motion.button>
@@ -353,7 +353,7 @@ export default function Header() {
 
       {/* Mobile Bottom Loan Products */}
       <motion.div 
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-black border-t border-orange-500"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-orange-500"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
@@ -414,7 +414,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              className="absolute inset-0 bg-white/50 backdrop-blur-sm"
               onClick={() => setShowLoanModal(false)}
             />
             <motion.div
@@ -437,7 +437,7 @@ export default function Header() {
                   whileHover={{ scale: 1.1, backgroundColor: "#f97316" }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setShowLoanModal(false)}
-                  className="w-10 h-10 bg-black text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
+                  className="w-10 h-10 bg-white text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
                 >
                   <FaTimes className="w-5 h-5" />
                 </motion.button>
@@ -456,7 +456,7 @@ export default function Header() {
                     className="group relative overflow-hidden bg-white border border-orange-500 p-6 transition-all duration-500 text-left"
                   >
                     <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 bg-black flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+                      <div className="w-12 h-12 bg-white flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
                         <span className="text-white">{product.icon}</span>
                       </div>
                       <FaChevronRight className="w-5 h-5 text-gray-900 group-hover:text-orange-500" />
@@ -501,7 +501,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-black/50"
+              className="absolute inset-0 bg-white/50"
               onClick={() => setShowMobileMenu(false)}
             />
             <motion.div
@@ -569,7 +569,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-black/50"
+              className="absolute inset-0 bg-white/50"
               onClick={() => setShowMobileContact(false)}
             />
             <motion.div
@@ -593,7 +593,7 @@ export default function Header() {
                     whileHover={{ scale: 1.1, backgroundColor: "#f97316" }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setShowMobileContact(false)}
-                    className="w-10 h-10 bg-black text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
+                    className="w-10 h-10 bg-white text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
                   >
                     <FaTimes className="w-5 h-5" />
                   </motion.button>
