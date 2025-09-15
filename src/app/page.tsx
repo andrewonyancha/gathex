@@ -188,7 +188,7 @@ const HeroSection = () => {
         </AnimatePresence>
         
         {/* Black-to-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent" />
+       <div className="absolute inset-0 max-md:bg-black/50 md:bg-gradient-to-r md:from-black md:to-transparent" />
       </div>
 
       {/* Animated Pointer - Desktop horizontal, with solid red */}
