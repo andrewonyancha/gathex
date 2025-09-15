@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { GiMoneyStack } from "react-icons/gi";
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaWhatsapp, 
@@ -18,7 +19,7 @@ import {
   FaInfoCircle,
   FaQuestionCircle,
   FaBlog,
-  FaMoneyCheckAlt
+  
 } from 'react-icons/fa';
 import { BookCopy } from 'lucide-react';
 import { BiCart } from 'react-icons/bi';
@@ -206,7 +207,7 @@ export default function Header() {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white tracking-wide border border-orange-500 transition-all duration-500"
                 >
-                  <FaMoneyCheckAlt size={16} />
+                  <GiMoneyStack size={16} />
                   <span className="relative z-10">Get A Loan</span>
                   <motion.div
                     initial={{ x: "-100%" }}
@@ -273,7 +274,7 @@ export default function Header() {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white   tracking-wide border border-orange-500 transition-all duration-500"
                 >
-                  <FaMoneyCheckAlt size={16} />
+                  <GiMoneyStack size={16} />
                   <span className="relative z-10">Get A Loan</span>
                   <motion.div
                     initial={{ x: "-100%" }}
@@ -549,7 +550,7 @@ export default function Header() {
                     }}
                     className="w-full text-left py-3 px-4 text-lg   bg-orange-500 text-white hover:bg-orange-600 transition-colors mt-4 flex items-center gap-2"
                   >
-                    <FaMoneyCheckAlt size={16} />
+                    <GiMoneyStack size={16} />
                     Get a Loan
                   </button>
                 </nav>

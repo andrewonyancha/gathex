@@ -19,6 +19,7 @@ import {
   FaTiktok,
 } from 'react-icons/fa';
 import { IconType } from 'react-icons';
+import { Mail } from 'lucide-react';
 
 interface ContactItem {
   text: string;
@@ -48,6 +49,7 @@ const Footer = () => {
       content: [
         { text: "Mfangano Street Information House Second Floor Suite A4 Nairobi.", icon: null },
         { text: "+254 700 393363", icon: HiPhone },
+         { text: "", icon: Mail },
       ],
     },
     {
@@ -131,7 +133,7 @@ const Footer = () => {
               {Array.isArray(footerSections[1].content) && footerSections[1].content.map((item, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   {item.icon && (
-                    <item.icon className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
+                    <item.icon className="w-4 h-4 text-[yellow] mt-1 flex-shrink-0" />
                   )}
                   <p className="text-gray-300 text-sm">{item.text}</p>
                 </div>
@@ -155,7 +157,7 @@ const Footer = () => {
                     href={link.href}
                     className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
                   >
-                    <link.icon className="w-4 h-4" />
+                    <link.icon className="w-4 h-4 text-[yellow]" />
                     <span>{link.name}</span>
                   </a>
                 </motion.li>
@@ -179,7 +181,7 @@ const Footer = () => {
                     href={link.href}
                     className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
                   >
-                    <link.icon className="w-4 h-4" />
+                    <link.icon className="w-4 h-4 text-[yellow]" />
                     <span>{link.name}</span>
                   </a>
                 </motion.li>
@@ -202,7 +204,7 @@ const Footer = () => {
               <motion.a
                 key={index}
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[yellow] flex items-center justify-center text-[red] hover:bg-red-600 transition-colors duration-300"
                 whileHover={{ 
                   scale: 1.1,
                   rotate: 5,

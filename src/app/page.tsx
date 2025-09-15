@@ -53,10 +53,10 @@ interface ContentSectionProps {
 
 // Sample images - replace with your actual images
 const HERO_DESKTOP_IMAGES = [
-  "/images/hero1.jpg",
-  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  "/images/hero6.jpg",
+  "/images/hero.jpg",
   "/images/hero3.jpg",
-  "/images/hero4.jpg"
+  "/images/hero5.jpg"
 ];
 
 const HERO_MOBILE_IMAGES = [
@@ -188,7 +188,7 @@ const HeroSection = () => {
         </AnimatePresence>
         
         {/* Black-to-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent" />
       </div>
 
       {/* Animated Pointer - Desktop horizontal, with solid red */}
@@ -252,7 +252,7 @@ const HeroSection = () => {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-orange-500 text-white px-6 py-1 sm:px-8 sm:py-4 tracking-wide transition-all duration-300 hover:bg-[yellow] hover:text-white flex items-center justify-center space-x-2 text-sm sm:text-base"
+                        className="bg-orange-500 text-white px-6 py-3 sm:px-8 sm:py-4 tracking-wide transition-all duration-300 hover:bg-[yellow] hover:text-white flex items-center justify-center space-x-2 text-sm sm:text-base"
                       >
                         <span>{slide.cta}</span>
                         <motion.div
