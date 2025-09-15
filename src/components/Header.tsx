@@ -7,9 +7,7 @@ import {
   FaWhatsapp, 
   FaPhone, 
   FaEnvelope, 
-  FaCar, 
-  FaBook, 
-  FaShoppingCart, 
+  FaCar,  
   FaShip,
   FaBars,
   FaTimes,
@@ -22,6 +20,8 @@ import {
   FaBlog,
   FaMoneyCheckAlt
 } from 'react-icons/fa';
+import { BookCopy } from 'lucide-react';
+import { BiCart } from 'react-icons/bi';
 
 type NavLink = {
   name: string;
@@ -52,7 +52,7 @@ const loanProducts: LoanProduct[] = [
     title: 'Car Financing',
     description: 'Get your dream car with flexible payment plans',
     features: ['Low interest rates', 'Quick approval', 'Flexible terms'],
-    icon: <FaCar size={20} />,
+    icon: <FaCar size={14} />,
     href: '/loans/car-financing',
     ctaText: 'Apply for Car Loan'
   },
@@ -61,7 +61,7 @@ const loanProducts: LoanProduct[] = [
     title: 'Log Book Loans',
     description: 'Use your vehicle as security for instant cash',
     features: ['Keep your car', 'Same day approval', 'Competitive rates'],
-    icon: <FaBook size={20} />,
+    icon: <BookCopy size={14} />,
     href: '/loans/log-book-loans',
     ctaText: 'Get Instant Cash'
   },
@@ -70,7 +70,7 @@ const loanProducts: LoanProduct[] = [
     title: 'Buy Off Loans',
     description: 'Transfer your loan to us for better terms',
     features: ['Lower rates', 'Better terms', 'Easy process'],
-    icon: <FaShoppingCart size={20} />,
+    icon: <BiCart size={16} />,
     href: '/loans/buy-off-loans',
     ctaText: 'Transfer Your Loan'
   },
@@ -79,7 +79,7 @@ const loanProducts: LoanProduct[] = [
     title: 'Import Duty Clearance',
     description: 'Finance your import duty payments easily',
     features: ['Fast processing', 'Competitive rates', 'Expert support'],
-    icon: <FaShip size={20} />,
+    icon: <FaShip size={14} />,
     href: '/loans/import-duty-clearance',
     ctaText: 'Clear Import Duty'
   }
@@ -204,7 +204,7 @@ export default function Header() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   whileHover={{ scale: 1.05, backgroundColor: "#ea580c" }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white font-medium tracking-wide border border-orange-500 transition-all duration-500"
+                  className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white tracking-wide border border-orange-500 transition-all duration-500"
                 >
                   <FaMoneyCheckAlt size={16} />
                   <span className="relative z-10">Get A Loan</span>
@@ -254,7 +254,7 @@ export default function Header() {
                       className="group flex items-center space-x-2 px-4 py-2 bg-[yellow] transition-all duration-300"
                     >
                       <span className="text-[red] group-hover:text-black">{product.icon}</span>
-                      <span className="text-sm font-medium text-[red] group-hover:text-black transition-colors duration-300">
+                      <span className="text-sm   text-[red] group-hover:text-black transition-colors duration-300">
                         {product.title}
                       </span>
                     </motion.button>
@@ -271,7 +271,7 @@ export default function Header() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   whileHover={{ scale: 1.05, backgroundColor: "#ea580c" }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white font-medium tracking-wide border border-orange-500 transition-all duration-500"
+                  className="flex items-center gap-2 relative group overflow-hidden px-6 py-2.5 text-sm bg-orange-500 text-white   tracking-wide border border-orange-500 transition-all duration-500"
                 >
                   <FaMoneyCheckAlt size={16} />
                   <span className="relative z-10">Get A Loan</span>
@@ -353,7 +353,7 @@ export default function Header() {
 
       {/* Mobile Bottom Loan Products */}
       <motion.div 
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white shadow-t"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white shadow"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
@@ -371,7 +371,7 @@ export default function Header() {
               className="group flex flex-col items-center gap-1 p-2 text-white hover:text-white transition-colors duration-300 rounded flex-1"
             >
               <span className="text-orange-500 group-hover:text-white">{product.icon}</span>
-              <span className="text-xs font-medium text-orange-500 group-hover:text-white transition-colors duration-300">
+              <span className="text-xs   text-orange-500 group-hover:text-white transition-colors duration-300">
                 {product.title.split(' ')[0]}
               </span>
             </motion.button>
@@ -396,7 +396,7 @@ export default function Header() {
               className="group flex flex-col items-center gap-1 p-2 text-white hover:text-white transition-colors duration-300 rounded flex-1"
             >
               <span className="text-orange-500 group-hover:text-white">{product.icon}</span>
-              <span className="text-xs font-medium text-orange-500 group-hover:text-white transition-colors duration-300">
+              <span className="text-xs   text-orange-500 group-hover:text-white transition-colors duration-300">
                 {product.title.split(' ')[0]}
               </span>
             </motion.button>
@@ -414,7 +414,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-white/50 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
               onClick={() => setShowLoanModal(false)}
             />
             <motion.div
@@ -437,7 +437,7 @@ export default function Header() {
                   whileHover={{ scale: 1.1, backgroundColor: "#f97316" }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setShowLoanModal(false)}
-                  className="w-10 h-10 bg-white text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
+                  className="w-10 h-10 bg-red text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
                 >
                   <FaTimes className="w-5 h-5" />
                 </motion.button>
@@ -462,7 +462,7 @@ export default function Header() {
                       <FaChevronRight className="w-5 h-5 text-gray-900 group-hover:text-orange-500" />
                     </div>
 
-                    <h3 className="text-xl font-medium text-gray-900 mb-2 group-hover:text-orange-500 transition-colors duration-300">
+                    <h3 className="text-xl   text-gray-900 mb-2 group-hover:text-orange-500 transition-colors duration-300">
                       {product.title}
                     </h3>
                     <p className="text-gray-700 mb-4 text-sm">
@@ -501,7 +501,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-white/50"
+              className="absolute inset-0 bg-black/50"
               onClick={() => setShowMobileMenu(false)}
             />
             <motion.div
@@ -547,7 +547,7 @@ export default function Header() {
                       setShowMobileMenu(false);
                       setShowLoanModal(true);
                     }}
-                    className="w-full text-left py-3 px-4 text-lg font-medium bg-orange-500 text-white hover:bg-orange-600 transition-colors mt-4 flex items-center gap-2"
+                    className="w-full text-left py-3 px-4 text-lg   bg-orange-500 text-white hover:bg-orange-600 transition-colors mt-4 flex items-center gap-2"
                   >
                     <FaMoneyCheckAlt size={16} />
                     Get a Loan
@@ -569,7 +569,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div 
-              className="absolute inset-0 bg-white/50"
+              className="absolute inset-0 bg-black/50"
               onClick={() => setShowMobileContact(false)}
             />
             <motion.div
@@ -585,7 +585,7 @@ export default function Header() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-gray-900 text-lg font-medium tracking-wide"
+                    className="text-gray-900 text-lg   tracking-wide"
                   >
                     Get in Touch
                   </motion.h3>
@@ -593,7 +593,7 @@ export default function Header() {
                     whileHover={{ scale: 1.1, backgroundColor: "#f97316" }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setShowMobileContact(false)}
-                    className="w-10 h-10 bg-white text-white flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
+                    className="w-10 h-10 bg-white text-red flex items-center justify-center border border-black hover:bg-orange-500 transition-colors duration-300"
                   >
                     <FaTimes className="w-5 h-5" />
                   </motion.button>
@@ -610,7 +610,7 @@ export default function Header() {
                     <div className="p-2 bg-green-100 text-green-600">
                       <FaWhatsapp size={20} />
                     </div>
-                    <span className="font-medium text-gray-900">WhatsApp</span>
+                    <span className="  text-gray-900">WhatsApp</span>
                   </motion.button>
                   <motion.button
                     onClick={() => handleContactClick('phone')}
@@ -623,7 +623,7 @@ export default function Header() {
                     <div className="p-2 bg-blue-100 text-blue-600">
                       <FaPhone size={20} />
                     </div>
-                    <span className="font-medium text-gray-900">Phone Call</span>
+                    <span className="  text-gray-900">Phone Call</span>
                   </motion.button>
                   <motion.button
                     onClick={() => handleContactClick('email')}
@@ -636,7 +636,7 @@ export default function Header() {
                     <div className="p-2 bg-orange-100 text-orange-600">
                       <FaEnvelope size={20} />
                     </div>
-                    <span className="font-medium text-gray-900">Email</span>
+                    <span className="  text-gray-900">Email</span>
                   </motion.button>
                 </div>
               </div>

@@ -103,7 +103,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black text-white pt-16 pb-8 px-4 md:px-8">
+    <footer className="bg-gray-900 text-white pt-16 pb-8 px-4 md:px-8">
       <div className="container mx-auto">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
@@ -153,7 +153,7 @@ const Footer = () => {
                 >
                   <a
                     href={link.href}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
                   >
                     <link.icon className="w-4 h-4" />
                     <span>{link.name}</span>
@@ -177,7 +177,7 @@ const Footer = () => {
                 >
                   <a
                     href={link.href}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
                   >
                     <link.icon className="w-4 h-4" />
                     <span>{link.name}</span>
@@ -190,7 +190,7 @@ const Footer = () => {
 
         {/* Social Links */}
         <motion.div
-          className="flex flex-col items-center border-t border-gray-800 pt-8"
+          className="flex flex-col items-center border-t border-gray-700 pt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -202,7 +202,7 @@ const Footer = () => {
               <motion.a
                 key={index}
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors duration-300"
                 whileHover={{ 
                   scale: 1.1,
                   rotate: 5,
@@ -217,7 +217,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <motion.div
-            className="text-center text-gray-500 text-xs"
+            className="text-center text-gray-300 text-xs"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.7 }}
