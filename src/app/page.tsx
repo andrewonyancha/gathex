@@ -35,7 +35,8 @@ interface HeroSlide {
   description: string;
   cta: string;
   stats: string;
-  image: string;
+  desktopImage: string;
+  mobileImage: string;
 }
 
 interface ContentSectionProps {
@@ -51,11 +52,18 @@ interface ContentSectionProps {
 }
 
 // Sample images - replace with your actual images
-const HERO_IMAGES = [
+const HERO_DESKTOP_IMAGES = [
   "/images/hero1.jpg",
   "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
   "/images/hero3.jpg",
   "/images/hero4.jpg"
+];
+
+const HERO_MOBILE_IMAGES = [
+  "/images/1.jpg",
+  "/images/4.jpg",
+  "/images/2.jpg",
+  "/images/3.jpg"
 ];
 
 const PRODUCT_IMAGES = [
@@ -70,12 +78,29 @@ const HELP_IMAGE = "/images/help.jpg";
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll();
   
   // Create pointer animation based on scroll
   const pointerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
   const pointerScale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1]);
   const pointerX = useTransform(scrollYProgress, [0, 0.1], [0, 10]);
+  
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIsMobile();
+    
+    // Add event listener for resize
+    window.addEventListener('resize', checkIsMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
   
   const heroSlides: HeroSlide[] = [
     {
@@ -84,7 +109,8 @@ const HeroSection = () => {
       description: "Get approved for your dream car with competitive rates and flexible payment terms. No hidden fees, just transparent financing solutions.",
       cta: "Get Car Loan",
       stats: "Starting from 8.5% APR",
-      image: HERO_IMAGES[0]
+      desktopImage: HERO_DESKTOP_IMAGES[0],
+      mobileImage: HERO_MOBILE_IMAGES[0]
     },
     {
       title: "Instant Cash Solutions",
@@ -92,7 +118,8 @@ const HeroSection = () => {
       description: "Use your vehicle as security and get instant cash while keeping your car. Quick approval process with competitive interest rates.",
       cta: "Apply Now",
       stats: "Up to KES 5M Available",
-      image: HERO_IMAGES[1]
+      desktopImage: HERO_DESKTOP_IMAGES[1],
+      mobileImage: HERO_MOBILE_IMAGES[1]
     },
     {
       title: "Better Loan Terms",
@@ -100,7 +127,8 @@ const HeroSection = () => {
       description: "Switch to Karventure for better interest rates and improved payment terms. Save money with our buy-off loan solutions.",
       cta: "Calculate Savings",
       stats: "Save up to 30% on payments",
-      image: HERO_IMAGES[2]
+      desktopImage: HERO_DESKTOP_IMAGES[2],
+      mobileImage: HERO_MOBILE_IMAGES[2]
     },
     {
       title: "Import With Ease",
@@ -108,7 +136,8 @@ const HeroSection = () => {
       description: "Finance your import duty payments with flexible terms. Get your goods cleared faster with our specialized import financing.",
       cta: "Learn More",
       stats: "Fast 48-hour processing",
-      image: HERO_IMAGES[3]
+      desktopImage: HERO_DESKTOP_IMAGES[3],
+      mobileImage: HERO_MOBILE_IMAGES[3]
     }
   ];
 
@@ -126,7 +155,11 @@ const HeroSection = () => {
         {/* Base background image - always visible */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroSlides[0].image})` }}
+          style={{ 
+            backgroundImage: `url(${
+              isMobile ? heroSlides[0].mobileImage : heroSlides[0].desktopImage
+            })` 
+          }}
         />
         
         {/* Overlay images that cover the base */}
@@ -143,7 +176,11 @@ const HeroSection = () => {
               >
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${slide.image})` }}
+                  style={{ 
+                    backgroundImage: `url(${
+                      isMobile ? slide.mobileImage : slide.desktopImage
+                    })` 
+                  }}
                 />
               </motion.div>
             )
@@ -602,7 +639,7 @@ export default function LandingPage() {
     href: "/help",
     image: HELP_IMAGE,
     supportItems: [
-      { icon: RiCustomerService2Fill, title: "24/7 RiCustomerService2Fill Support", desc: "Call us anytime for immediate assistance" },
+      { icon: RiCustomerService2Fill, title: "24/7 Customer Support", desc: "Call us anytime for immediate assistance" },
       { icon: Mail, title: "Email Support", desc: "Get detailed answers via email within 2 hours" },
       { icon: Clock, title: "Live Chat", desc: "Instant messaging support during business hours" }
     ]
