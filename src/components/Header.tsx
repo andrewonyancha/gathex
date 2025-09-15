@@ -315,7 +315,7 @@ export default function Header() {
             backgroundColor: "#f97316"
           }}
           whileTap={{ scale: 0.9 }}
-          className="w-14 h-14 bg-white text-orange-500 border border-orange-500 hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
+          className="w-14 h-14 bg-white text-orange-500 shadow hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
         >
           <FaBars size={16} />
         </motion.button>
@@ -345,7 +345,7 @@ export default function Header() {
             backgroundColor: "#f97316"
           }}
           whileTap={{ scale: 0.9 }}
-          className="w-14 h-14 bg-white text-orange-500 border border-orange-500 hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
+          className="w-14 h-14 bg-white text-orange-500 shadow hover:bg-orange-500 hover:text-black transition-all duration-500 flex items-center justify-center"
         >
           <FaPhone size={16} />
         </motion.button>

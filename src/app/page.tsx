@@ -13,9 +13,9 @@ import {
   
   Mail,
   Clock,
-  ArrowDown,
   ChevronRight,
-  Play
+  Play,
+  MoveDownIcon
 } from 'lucide-react';
 import { Car } from 'lucide-react';
 
@@ -172,8 +172,8 @@ const HeroSection = () => {
         style={{ opacity: pointerOpacity }}
         className="absolute z-30 left-1/2 top-3/4 -translate-x-1/2 flex flex-col items-center space-y-2 lg:hidden"
       >
-        <div className="w-16 h-0.5 bg-red-600" />
-        <ArrowDown className="w-6 h-6 text-white" />
+        
+        <MoveDownIcon className="w-6 h-6 text-white" />
       </motion.div>
 
       {/* Content Container - Left Aligned, Transparent */}
@@ -370,8 +370,8 @@ const ContentSection = ({
               style={{ opacity: arrowOpacity }}
               className={`absolute z-30 left-1/2 top-[80%] -translate-x-1/2 flex flex-col items-center space-y-2 lg:hidden`}
             >
-              <div className="w-12 h-1 bg-red-600" />
-              <ArrowDown className="w-6 h-6 text-red-600" />
+              
+              <MoveDownIcon className="w-6 h-6 text-red-600" />
             </motion.div>
             
             <div className="h-full relative overflow-hidden">
