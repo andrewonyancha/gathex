@@ -120,7 +120,7 @@ const Footer = () => {
     <footer className="bg-black text-white pt-16 pb-12 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 h-[320px] sm:h-[380px] md:h-[420px] lg:h-auto lg:overflow-visible overflow-y-auto scrollbar-hide"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

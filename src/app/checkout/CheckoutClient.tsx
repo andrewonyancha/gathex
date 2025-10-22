@@ -1,4 +1,3 @@
-// components/CheckoutClient.tsx
 'use client';
 
 import { useState } from 'react';
@@ -6,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Image from 'next/image';
-import dynamic from 'next/dynamic'; // Import dynamic
+import dynamic from 'next/dynamic';
 import { useCart } from '@/app/context/CartContext';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
@@ -194,7 +193,7 @@ export default function CheckoutClient() {
 
       <main className="container mx-auto px-4 py-8">
         <motion.div
-          className="max-w-4xl mx-auto h-[320px] sm:h-[380px] md:h-[420px] lg:h-auto lg:overflow-visible overflow-y-auto scrollbar-hide"
+          className="max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -202,7 +201,7 @@ export default function CheckoutClient() {
         >
           {cart.length === 0 ? (
             <motion.div
-              className="text-center bg-gray-100 p-8 md:p-10 lg:p-12 shadow-lg"
+              className="text-center bg-gray-100 p-8 md:p-10 lg:p-12 shadow"
               variants={itemVariants}
             >
               <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
@@ -226,7 +225,7 @@ export default function CheckoutClient() {
               {/* Order Summary */}
               <motion.section
                 aria-labelledby="order-summary"
-                className="bg-gray-100 p-6 md:p-8 lg:p-10 shadow-lg"
+                className="bg-gray-100 p-6 md:p-8 lg:p-10 shadow"
                 variants={itemVariants}
               >
                 <div className="flex items-center space-x-3 mb-4">
@@ -291,7 +290,7 @@ export default function CheckoutClient() {
               {/* Payment Form */}
               <motion.section
                 aria-labelledby="payment-details"
-                className="bg-gray-100 p-6 md:p-8 lg:p-10 shadow-lg"
+                className="bg-gray-100 p-6 md:p-8 lg:p-10 shadow"
                 variants={itemVariants}
               >
                 <div className="flex items-center space-x-3 mb-4">
