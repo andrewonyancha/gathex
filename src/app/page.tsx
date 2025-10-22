@@ -65,7 +65,7 @@ const HERO_DESKTOP_IMAGES = [
 ];
 
 const HERO_MOBILE_IMAGES = [
-  "/images/toyoota.jpg",
+  "/images/hero6.jpg",
   "/images/4.jpg",
   "/images/3.jpg",
   "/images/audi.jpg",
