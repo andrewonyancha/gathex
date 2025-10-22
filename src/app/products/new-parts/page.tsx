@@ -201,7 +201,7 @@ function NewPartsContent() {
                         type="text"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search by name, brand, or part number..."
+                        placeholder="Search..."
                         className="w-full pl-10 pr-3 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                         aria-label="Search auto parts"
                       />
