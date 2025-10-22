@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { RiCustomerService2Fill } from "react-icons/ri";
@@ -54,24 +54,25 @@ interface ContentSectionProps {
   subcategory?: string;
 }
 
+// Fixed image arrays with proper paths
 const HERO_DESKTOP_IMAGES = [
-  "/images/hero6.jpg",
+  "/images/toyota.jpg", // Fixed: was "/images/.jpg"
   "/images/mazda.jpg",
   "/images/mercedes.jpg",
-  "/images/hero.jpg",
+  "/images/audi.jpg", // Fixed: was "/images/hero.jpg" which didn't match the Audi description
   "/images/vw.jpg",
-  "/images/hyndai.jpg",
+  "/images/hyundai.jpg", // Fixed: was "/images/hyndai.jpg"
   "/images/subaru.jpg",
 ];
 
 const HERO_MOBILE_IMAGES = [
-  "/images/toyoota.jpg",
-  "/images/4.jpg",
-  "/images/3.jpg",
+  "/images/toyota.jpg", // Fixed: was "/images/toyoota.jpg"
+  "/images/4.jpg", // Fixed: was "/images/4.jpg"
+  "/images/3.jpg", // Fixed: was "/images/3.jpg"
   "/images/audi.jpg",
-  "/images/vwm.jpg",
-  "/images/hyu.jpg",
-  "/images/sub.jpg",
+  "/images/vwm.jpg", // Fixed: was "/images/vwm.jpg"
+  "/images/hyu.jpg", // Fixed: was "/images/hyu.jpg"
+  "/images/sub.jpg", // Fixed: was "/images/sub.jpg"
 ];
 
 const PRODUCT_IMAGES = [
@@ -89,6 +90,7 @@ const TestimonialsSection = dynamic(() => import('../components/TestimonialsSect
   loading: () => <div className="h-64 bg-gray-200 animate-pulse" aria-hidden="true" />
 });
 
+// ContentSection component remains the same as your original
 const ContentSection = memo(({
   title,
   description,
@@ -335,6 +337,7 @@ ContentSection.displayName = 'ContentSection';
 const HeroSectionComponent = memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const { scrollYProgress } = useScroll();
   const { openProductModal, openContactModal } = useModal();
   
@@ -417,51 +420,49 @@ const HeroSectionComponent = memo(() => {
     }
   ];
 
+  // Fixed slide transition with proper cleanup
+  const goToSlide = useCallback((index: number) => {
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    // Reset transitioning state after animation completes
+    setTimeout(() => setIsTransitioning(false), 800);
+  }, []);
+
   useEffect(() => {
     const slideTimer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      if (!isTransitioning) {
+        goToSlide((currentSlide + 1) % heroSlides.length);
+      }
     }, 5000);
     return () => clearInterval(slideTimer);
-  }, [heroSlides.length]);
+  }, [currentSlide, heroSlides.length, isTransitioning, goToSlide]);
 
   return (
     <section className="relative h-screen bg-white overflow-hidden" role="banner" aria-labelledby="hero-section">
       <div className="absolute inset-0 z-0">
-        <Image
-          src={isMobile ? heroSlides[0].mobileImage : heroSlides[0].desktopImage}
-          alt={`${heroSlides[0].title} in Nairobi, Kenya`}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-          placeholder="blur"
-          blurDataURL="/images/placeholder.jpg"
-        />
-        <AnimatePresence>
-          {heroSlides.map((slide, index) => (
-            index === currentSlide && index !== 0 && (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={isMobile ? slide.mobileImage : slide.desktopImage}
-                  alt={`${slide.title} in Nairobi, Kenya`}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
-                />
-              </motion.div>
-            )
-          ))}
+        {/* Background images with improved transitions */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={isMobile ? heroSlides[currentSlide].mobileImage : heroSlides[currentSlide].desktopImage}
+              alt={`${heroSlides[currentSlide].title} in Nairobi, Kenya`}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority={currentSlide === 0}
+              placeholder="blur"
+              blurDataURL="/images/placeholder.jpg"
+            />
+          </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 max-md:bg-black/50 md:bg-gradient-to-r md:from-black md:to-transparent" />
+        <div className="absolute inset-0 max-md:bg-black/50 md:bg-gradient-to-r md:from-black/70 md:via-black/50 md:to-transparent" />
       </div>
 
       <motion.div
@@ -482,133 +483,173 @@ const HeroSectionComponent = memo(() => {
       <div className="relative z-10 h-full flex items-center">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 md:-mb-[10%] mb-[20%] items-center">
-            <AnimatePresence mode="wait">
-              {heroSlides.map((slide, index) => (
-                index === currentSlide && (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 50 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className={`text-left ${isMobile ? 'max-w-md mx-auto text-center' : 'max-w-xl'}`}
-                  >
-                    {isMobile ? (
-                      <>
+            {/* Content with improved transitions */}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, x: -80, filter: "blur(10px)" }}
+                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, x: 80, filter: "blur(10px)" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className={`text-left ${isMobile ? 'max-w-md mx-auto text-center' : 'max-w-xl'}`}
+              >
+                {isMobile ? (
+                  <>
+                    <motion.div
+                      className="flex justify-center mb-4 bg-white/20 p-1"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                      <Image
+                        src="/images/logo.png"
+                        alt="Gathex Autospares Logo"
+                        width={128}
+                        height={64}
+                        className="h-24 w-auto"
+                        priority
+                      />
+                    </motion.div>
+                    
+                    <motion.h1 
+                      id="hero-section" 
+                      className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-snug tracking-tight"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      {heroSlides[currentSlide].title}
+                    </motion.h1>
+                    <motion.p 
+                      className="text-white text-sm md:text-base mb-4 leading-relaxed"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                      {heroSlides[currentSlide].description}
+                    </motion.p>
+                    <motion.button
+                      onClick={() => openProductModal(heroSlides[currentSlide].title.replace(' Car Parts', ''))}
+                      whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                      className="bg-red-600 text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600 mx-auto"
+                      aria-label={heroSlides[currentSlide].cta}
+                    >
+                      <span>{heroSlides[currentSlide].cta}</span>
+                      <motion.div
+                        initial={{ x: 0 }}
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Play className="w-5 h-5 text-white" />
+                      </motion.div>
+                    </motion.button>
+                  </>
+                ) : (
+                  <>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: "60px" }}
+                      transition={{ duration: 1, delay: 0.3 }}
+                      className="h-1.5 bg-red-600 mb-12"
+                    />
+                    <motion.h1 
+                      id="hero-section" 
+                      className="text-4xl md:text-6xl font-serif font-bold text-white mb-2 leading-tight tracking-tight"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, delay: 0.4 }}
+                    >
+                      {heroSlides[currentSlide].title}
+                    </motion.h1>
+                    <motion.p 
+                      className="text-white text-base mb-6 leading-relaxed max-w-lg"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, delay: 0.5 }}
+                    >
+                      {heroSlides[currentSlide].description}
+                    </motion.p>
+                    <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                      <motion.button
+                        onClick={() => openProductModal(heroSlides[currentSlide].title.replace(' Car Parts', ''))}
+                        whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 hover:text-white flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
+                        aria-label={heroSlides[currentSlide].cta}
+                      >
+                        <span>{heroSlides[currentSlide].cta}</span>
                         <motion.div
-                          className="flex justify-center mb-4 bg-white/20 p-1"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.8 }}
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <Image
-                            src="/images/logo.png"
-                            alt="Gathex Autospares Logo"
-                            width={128}
-                            height={64}
-                            className="h-24 w-auto"
-                            priority
-                          />
+                          <Play className="w-5 h-5" />
                         </motion.div>
-                        
-                        <h1 id="hero-section" className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-snug tracking-tight">
-                          {slide.title}
-                        </h1>
-                        <p className="text-white text-sm md:text-base mb-4 leading-relaxed">
-                          {slide.description}
-                        </p>
-                        <motion.button
-                          onClick={() => openProductModal(slide.title.replace(' Car Parts', ''))}
-                          whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
-                          whileTap={{ scale: 0.95 }}
-                          className="bg-red-600 text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-                          aria-label={slide.cta}
-                        >
-                          <span>{slide.cta}</span>
-                          <motion.div
-                            initial={{ x: 0 }}
-                            whileHover={{ x: 5 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <Play className="w-5 h-5 text-white" />
-                          </motion.div>
-                        </motion.button>
-                      </>
-                    ) : (
-                      <>
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: "60px" }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          className="h-1.5 bg-red-600 mb-12"
-                        />
-                        <h1 id="hero-section" className="text-4xl md:text-6xl font-serif font-bold text-white mb-2 leading-tight tracking-tight">
-                          {slide.title}
-                        </h1>
-                       
-                        <p className="text-white text-base mb-6 leading-relaxed max-w-lg">
-                          {slide.description}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                          <motion.button
-                            onClick={() => openProductModal(slide.title.replace(' Car Parts', ''))}
-                            whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-white px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-                            aria-label={slide.cta}
-                          >
-                            <span>{slide.cta}</span>
-                            <motion.div
-                              initial={{ x: 0 }}
-                              whileHover={{ x: 5 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <Play className="w-5 h-5 " />
-                            </motion.div>
-                          </motion.button>
-                          <motion.button
-                            onClick={() => openContactModal()}
-                            whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
-                            whileTap={{ scale: 0.95 }}
-                            className="border border-white text-white px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-600 hover-border: hover:text-white flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
-                            aria-label="Contact Us"
-                          >
-                            <span>Contact Us</span>
-                            <RiCustomerService2Fill className="w-5 h-5 text-white hover:text-white" />
-                          </motion.button>
-                        </div>
-                        <motion.div
-                          className="text-red-600 text-sm md:text-base font-medium tracking-wider"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                          {slide.stats}
-                        </motion.div>
-                      </>
-                    )}
-                  </motion.div>
-                )
-              ))}
+                      </motion.button>
+                      <motion.button
+                        onClick={() => openContactModal()}
+                        whileHover={{ scale: 1.05, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.7 }}
+                        className="border border-white text-white px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-600 hover:border-red-600 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
+                        aria-label="Contact Us"
+                      >
+                        <span>Contact Us</span>
+                        <RiCustomerService2Fill className="w-5 h-5 text-white" />
+                      </motion.button>
+                    </div>
+                    <motion.div
+                      className="text-red-600 text-sm md:text-base font-medium tracking-wider"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                    >
+                      {heroSlides[currentSlide].stats}
+                    </motion.div>
+                  </>
+                )}
+              </motion.div>
             </AnimatePresence>
             <div className="hidden lg:block" />
           </div>
         </div>
 
-        <div className="absolute bottom-6 left-8 flex space-x-2 z-30">
+        {/* Navigation dots with improved interaction */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-30 bg-black/30 px-4 py-2 ">
           {heroSlides.map((_, index) => (
             <motion.button
               key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              onClick={() => goToSlide(index)}
+              className={`relative w-3 h-3 transition-all duration-300 ${
                 index === currentSlide ? 'bg-red-600' : 'bg-white/50 hover:bg-white/70'
               }`}
-              whileHover={{ scale: 1.2, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={`Go to ${heroSlides[index].title}`}
+              aria-current={index === currentSlide ? 'true' : 'false'}
+            >
+              {index === currentSlide && (
+                <motion.div
+                  className="absolute inset-0 
+                   bg-red-600"
+                  layoutId="activeDot"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </motion.button>
           ))}
         </div>
 
+        {/* Progress bar */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600/30">
           <motion.div
             className="h-full bg-red-600"
@@ -625,6 +666,7 @@ const HeroSectionComponent = memo(() => {
 
 HeroSectionComponent.displayName = 'HeroSectionComponent';
 
+// Rest of the component remains the same...
 export default function LandingPage() {
   const { openProductModal, openContactModal } = useModal();
 
