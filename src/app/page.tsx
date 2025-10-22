@@ -66,10 +66,10 @@ const HERO_DESKTOP_IMAGES = [
 ];
 
 const HERO_MOBILE_IMAGES = [
-  '/images/hero6.jpg',
-  '/images/4.jpg',
+  '/images/toyot.jpg',
+  '/images/mazda1.jpg',
   '/images/3.jpg',
-  '/images/audi.jpg',
+  '/images/audi1.jpg',
   '/images/vwm.jpg',
   '/images/hyu.jpg',
   '/images/sub.jpg',
