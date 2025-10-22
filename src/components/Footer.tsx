@@ -46,9 +46,9 @@ const Footer = () => {
     {
       title: "Contact",
       content: [
-        { text: "[Your Phone Number]", icon: HiPhone },
-        { text: "[Your WhatsApp Number]", icon: FaWhatsapp },
-        { text: "[Your Email Address]", icon: Mail },
+        { text: "+254 748 094055", icon: HiPhone },
+        { text: "+254 748 094055", icon: FaWhatsapp },
+        { text: "Gathecha75@gmail.com", icon: Mail },
       ],
     },
     {
