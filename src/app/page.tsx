@@ -55,7 +55,7 @@ interface ContentSectionProps {
 }
 
 const HERO_DESKTOP_IMAGES = [
-  "/images/toyota.jpg",
+  "/images/hero6.jpg",
   "/images/mazda.jpg",
   "/images/mercedes.jpg",
   "/images/hero.jpg",
