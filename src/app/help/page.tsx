@@ -22,10 +22,10 @@ export default function HelpCenter() {
       { title: "Warranty Information", desc: "Up to 6 months on select parts." }
     ],
     contactImages: [
-      { src: "/images/hero6.jpg", alt: "WhatsApp", icon: FaWhatsapp, action: "whatsapp" },
-      { src: "/images/hero6.jpg", alt: "Phone Call", icon: Phone, action: "phone" },
-      { src: "/images/hero6.jpg", alt: "Email", icon: Mail, action: "email" },
-      { src: "/images/hero6.jpg", alt: "Not Sure? Chat Now!", icon: MessageCircle, action: "chat" }
+      { src: "/images/about.jpg", alt: "WhatsApp", icon: FaWhatsapp, action: "whatsapp" },
+      { src: "/images/about.jpg", alt: "Phone Call", icon: Phone, action: "phone" },
+      { src: "/images/about.jpg", alt: "Email", icon: Mail, action: "email" },
+      { src: "/images/about.jpg", alt: "Not Sure? Chat Now!", icon: MessageCircle, action: "chat" }
     ]
   };
 
