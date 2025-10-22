@@ -196,7 +196,7 @@ const ContentSection = memo(({
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true, margin: "-50px" }}
-            className={`${isReversed ? 'lg:col-start-1 lg:mr-[-30px]' : 'lg:ml-[-30px]'} h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] flex flex-col justify-end relative z-20 mt-[25%] md:mt-[-60px] w-full max-w-[95%] mx-auto lg:max-w-none`}
+            className={`${isReversed ? 'lg:col-start-1 lg:mr-[-30px]' : 'lg:ml-[-30px]'} h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] flex flex-col justify-end relative z-20 mt-[35%] md:mt-[-60px] w-full max-w-[95%] mx-auto lg:max-w-none`}
           >
             <div className="bg-gray-100 p-4 md:p-6 lg:p-7 text-black">
               <motion.div
