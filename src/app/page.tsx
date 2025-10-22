@@ -55,29 +55,29 @@ interface ContentSectionProps {
 }
 
 const HERO_DESKTOP_IMAGES = [
-  "/images/hero6.jpg",
+  "/images/toyota.jpg",
   "/images/mazda.jpg",
   "/images/mercedes.jpg",
-  "/images/hero.jpg",
+  "/images/audi.jpg",
   "/images/vw.jpg",
-  "/images/hyndai.jpg",
+  "/images/hyundai.jpg",
   "/images/subaru.jpg",
 ];
 
 const HERO_MOBILE_IMAGES = [
-  "/images/toyoota.jpg",
-  "/images/4.jpg",
-  "/images/3.jpg",
-  "/images/audi.jpg",
-  "/images/vwm.jpg",
-  "/images/hyu.jpg",
-  "/images/sub.jpg",
+  "/images/toyota-m.jpg",
+  "/images/mazda-m.jpg",
+  "/images/mercedes-m.jpg",
+  "/images/audi-m.jpg",
+  "/images/vw-m.jpg",
+  "/images/hyundai-m.jpg",
+  "/images/subaru-m.jpg",
 ];
 
 const PRODUCT_IMAGES = [
   "/images/engine.jpg",
   "/images/steer.jpg",
-  "/images/break.jpg",
+  "/images/brake.jpg",
   "/images/light.jpg"
 ];
 
@@ -427,39 +427,26 @@ const HeroSectionComponent = memo(() => {
   return (
     <section className="relative h-screen bg-white overflow-hidden" role="banner" aria-labelledby="hero-section">
       <div className="absolute inset-0 z-0">
-        <Image
-          src={isMobile ? heroSlides[0].mobileImage : heroSlides[0].desktopImage}
-          alt={`${heroSlides[0].title} in Nairobi, Kenya`}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-          placeholder="blur"
-          blurDataURL="/images/placeholder.jpg"
-        />
-        <AnimatePresence>
-          {heroSlides.map((slide, index) => (
-            index === currentSlide && index !== 0 && (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={isMobile ? slide.mobileImage : slide.desktopImage}
-                  alt={`${slide.title} in Nairobi, Kenya`}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
-                />
-              </motion.div>
-            )
-          ))}
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={isMobile ? heroSlides[currentSlide].mobileImage : heroSlides[currentSlide].desktopImage}
+              alt={`${heroSlides[currentSlide].title} in Nairobi, Kenya`}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+              placeholder="blur"
+              blurDataURL="/images/placeholder.jpg"
+            />
+          </motion.div>
         </AnimatePresence>
         <div className="absolute inset-0 max-md:bg-black/50 md:bg-gradient-to-r md:from-black md:to-transparent" />
       </div>
@@ -563,7 +550,7 @@ const HeroSectionComponent = memo(() => {
                               whileHover={{ x: 5 }}
                               transition={{ duration: 0.2 }}
                             >
-                              <Play className="w-5 h-5 " />
+                              <Play className="w-5 h-5" />
                             </motion.div>
                           </motion.button>
                           <motion.button
