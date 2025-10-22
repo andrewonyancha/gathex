@@ -72,7 +72,7 @@ const HERO_MOBILE_IMAGES = [
   '/images/audi.jpg',
   '/images/vwm.jpg',
   '/images/hyu.jpg',
-  '/images/subaru1.jpg',
+  '/images/sub.jpg',
 ];
 
 const PRODUCT_IMAGES = [
