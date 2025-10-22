@@ -25,7 +25,7 @@ export default function HelpCenter() {
       { src: "/images/about.jpeg", alt: "WhatsApp", icon: FaWhatsapp, action: "whatsapp" },
       { src: "/images/about.jpeg", alt: "Phone Call", icon: Phone, action: "phone" },
       { src: "/images/about.jpeg", alt: "Email", icon: Mail, action: "email" },
-      { src: "/images/about.jpeg", alt: "Not Sure? Chat Now!", icon: MessageCircle, action: "chat" }
+      { src: "/images/about.jpeg", alt: "Not Sure? chat", icon: MessageCircle, action: "chat" }
     ]
   };
 
