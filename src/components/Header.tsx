@@ -433,7 +433,7 @@ export default function Header() {
             </motion.button>
           ))}
           <motion.button
-            onClick={() => router.push('/about')}
+            onClick={() => router.push('/help')}
             whileHover={{ scale: 1.1, backgroundColor: "#dc2626" }}
             whileTap={{ scale: 0.9 }}
             className="mx-2 w-10 h-10 bg-red-600 flex items-center justify-center text-white transition-colors duration-300"
