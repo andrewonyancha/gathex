@@ -62,7 +62,7 @@ const HERO_DESKTOP_IMAGES = [
   '/images/hero.jpg',
   '/images/vw.jpg',
   '/images/hyndai.jpg',
-  '/images/subaru.jpg',
+  '/images/subaru1.jpg',
 ];
 
 const HERO_MOBILE_IMAGES = [
