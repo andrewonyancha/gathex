@@ -4,10 +4,8 @@ import { motion, Variants } from 'framer-motion';
 import {
   HiHome,
   HiUserGroup,
-  HiDocument,
   HiPhone,
   HiClipboardList,
-  HiCurrencyDollar,
   HiTruck,
 } from 'react-icons/hi';
 import { BiCar } from 'react-icons/bi';
@@ -17,13 +15,14 @@ import {
   FaTwitter,
   FaLinkedinIn,
   FaTiktok,
+  FaWhatsapp,
 } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import { Mail } from 'lucide-react';
 
 interface ContactItem {
   text: string;
-  icon: IconType | null;
+  icon: IconType | typeof Mail;
 }
 
 interface LinkItem {
@@ -41,34 +40,33 @@ interface FooterSection {
 const Footer = () => {
   const footerSections: FooterSection[] = [
     {
-      title: "About Us",
-      content: "KARVENTURE INVESTMENT LIMITED is a dynamic and rapidly expanding microcredit institution based in Nairobi Kenya. We specialize in providing secured loan solutions tailored to meet the diverse financial needs of individuals and small businesses across the country.",
+      title: "About",
+      content: "Gathex Autospares is your trusted source for high-quality, original auto parts for small vehicles. Located along Kirinyaga Road, Nairobi, we provide countrywide delivery and expert support to keep your car running smoothly.",
     },
     {
-      title: "Contact Info",
+      title: "Contact",
       content: [
-        { text: "Mfangano Street Information House Second Floor Suite A4 Nairobi.", icon: null },
-        { text: "+254 700 393363", icon: HiPhone },
-         { text: "", icon: Mail },
+        { text: "[Your Phone Number]", icon: HiPhone },
+        { text: "[Your WhatsApp Number]", icon: FaWhatsapp },
+        { text: "[Your Email Address]", icon: Mail },
       ],
     },
     {
-      title: "Quick Links",
+      title: "Links",
       links: [
         { name: "Home", href: "/", icon: HiHome },
-        { name: "Loan Products", href: "/loans", icon: HiClipboardList },
+        { name: "Products", href: "/products", icon: HiClipboardList },
         { name: "About Us", href: "/about", icon: HiUserGroup },
-        { name: "News", href: "/news", icon: HiDocument },
         { name: "Contact Us", href: "/contact", icon: HiPhone },
       ],
     },
     {
-      title: "Loan Products",
+      title: "Categories",
       links: [
-        { name: "Car Financing", href: "/loans/car-financing", icon: BiCar },
-        { name: "Log Book Loans", href: "/loans/log-book-loans", icon: HiClipboardList },
-        { name: "Buy Off Loans", href: "/loans/buy-off-loans", icon: HiCurrencyDollar },
-        { name: "Import Duty Clearance", href: "/loans/import-duty-clearance", icon: HiTruck },
+        { name: "Engine Parts", href: "/products/engine-parts", icon: BiCar },
+        { name: "Brake & Steering", href: "/products/brake-steering", icon: HiClipboardList },
+        { name: "Suspension & Body", href: "/products/suspension-body", icon: HiTruck },
+        { name: "Electrical & Lights", href: "/products/electrical-light", icon: HiClipboardList },
       ],
     },
   ];
@@ -77,8 +75,8 @@ const Footer = () => {
     { name: "Facebook", icon: FaFacebookF, href: "#" },
     { name: "Instagram", icon: FaInstagram, href: "#" },
     { name: "X", icon: FaTwitter, href: "#" },
-    { name: "Linked In", icon: FaLinkedinIn, href: "#" },
-    { name: "Tiktok", icon: FaTiktok, href: "#" },
+    { name: "LinkedIn", icon: FaLinkedinIn, href: "#" },
+    { name: "TikTok", icon: FaTiktok, href: "#" },
   ];
 
   const containerVariants: Variants = {
@@ -86,16 +84,29 @@ const Footer = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.2,
         delayChildren: 0.3,
+        ease: "easeOut",
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const socialVariants: Variants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.5,
@@ -105,59 +116,103 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8 px-4 md:px-8">
+    <footer className="bg-black text-white pt-16 pb-12 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 h-[320px] sm:h-[380px] md:h-[420px] lg:h-auto lg:overflow-visible overflow-y-auto scrollbar-hide"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           {/* About Section */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-light tracking-wider border-b border-orange-500 pb-2 mb-4">
-              {footerSections[0].title}
-            </h3>
-            <p className="text-gray-300 leading-relaxed text-sm">
+            <div className="flex items-center space-x-3">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "50px" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-1.5 bg-red-600"
+              />
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-wider">
+                {footerSections[0].title}
+              </h3>
+            </div>
+            <p className="text-gray-200 text-sm md:text-base leading-relaxed">
               {typeof footerSections[0].content === 'string' ? footerSections[0].content : ''}
             </p>
           </motion.div>
 
           {/* Contact Info */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-light tracking-wider border-b border-orange-500 pb-2 mb-4">
-              {footerSections[1].title}
-            </h3>
-            <div className="space-y-3">
+            <div className="flex items-center space-x-3">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "50px" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-1.5 bg-red-600"
+              />
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-wider">
+                {footerSections[1].title}
+              </h3>
+            </div>
+            <div className="space-y-4">
               {Array.isArray(footerSections[1].content) && footerSections[1].content.map((item, index) => (
-                <div key={index} className="flex items-start space-x-3">
+                <motion.div
+                  key={index}
+                  className="flex items-start space-x-3"
+                  variants={itemVariants}
+                  whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                >
                   {item.icon && (
-                    <item.icon className="w-4 h-4 text-[yellow] mt-1 flex-shrink-0" />
+                    <motion.div
+                      className="w-8 h-8 bg-red-600 flex items-center justify-center rounded-full"
+                      whileHover={{ scale: 1.1, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <item.icon className="w-5 h-5 text-white" />
+                    </motion.div>
                   )}
-                  <p className="text-gray-300 text-sm">{item.text}</p>
-                </div>
+                  <p className="text-gray-200 text-sm md:text-base">{item.text}</p>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-light tracking-wider border-b border-orange-500 pb-2 mb-4">
-              {footerSections[2].title}
-            </h3>
-            <ul className="space-y-2">
+            <div className="flex items-center space-x-3">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "50px" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-1.5 bg-red-600"
+              />
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-wider">
+                {footerSections[2].title}
+              </h3>
+            </div>
+            <ul className="space-y-3">
               {footerSections[2].links?.map((link, index) => (
                 <motion.li
                   key={index}
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: 5, color: "#dc2626" }}
                   transition={{ duration: 0.2 }}
                 >
                   <a
                     href={link.href}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
+                    className="flex items-center space-x-2 text-gray-200 hover:text-red-600 transition-colors duration-300 text-sm md:text-base"
                   >
-                    <link.icon className="w-4 h-4 text-[yellow]" />
+                    <motion.div
+                      whileHover={{ scale: 1.1, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                      transition={{ duration: 0.2 }}
+                      className="w-8 h-8 bg-red-600 flex items-center justify-center rounded-full"
+                    >
+                      <link.icon className="w-5 h-5 text-white" />
+                    </motion.div>
                     <span>{link.name}</span>
                   </a>
                 </motion.li>
@@ -165,23 +220,38 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Loan Products */}
+          {/* Product Categories */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-light tracking-wider border-b border-orange-500 pb-2 mb-4">
-              {footerSections[3].title}
-            </h3>
-            <ul className="space-y-2">
+            <div className="flex items-center space-x-3">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "50px" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-1.5 bg-red-600"
+              />
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-wider">
+                {footerSections[3].title}
+              </h3>
+            </div>
+            <ul className="space-y-3">
               {footerSections[3].links?.map((link, index) => (
                 <motion.li
                   key={index}
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: 5, color: "#dc2626" }}
                   transition={{ duration: 0.2 }}
                 >
                   <a
                     href={link.href}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm"
+                    className="flex items-center space-x-2 text-gray-200 hover:text-red-600 transition-colors duration-300 text-sm md:text-base"
                   >
-                    <link.icon className="w-4 h-4 text-[yellow]" />
+                    <motion.div
+                      whileHover={{ scale: 1.1, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
+                      transition={{ duration: 0.2 }}
+                      className="w-8 h-8 bg-red-600 flex items-center justify-center rounded-full"
+                    >
+                      <link.icon className="w-5 h-5 text-white" />
+                    </motion.div>
                     <span>{link.name}</span>
                   </a>
                 </motion.li>
@@ -195,37 +265,47 @@ const Footer = () => {
           className="flex flex-col items-center border-t border-gray-700 pt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h3 className="text-lg font-light tracking-wider mb-6">Connect With Us</h3>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "60px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="h-1.5 bg-red-600 mb-6"
+          />
+          <h3 className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-wider text-white mb-6">
+            Connect With Us
+          </h3>
           <div className="flex space-x-4 mb-8">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={index}
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-[yellow] flex items-center justify-center text-[red] hover:bg-red-600 transition-colors duration-300"
+                className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white hover:bg-red-500 transition-colors duration-300"
+                variants={socialVariants}
                 whileHover={{ 
                   scale: 1.1,
-                  rotate: 5,
+                  boxShadow: "0 0 12px rgba(220, 38, 38, 0.6)",
                   transition: { duration: 0.2 }
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <social.icon className="w-4 h-4" />
+                <social.icon className="w-5 h-5 md:w-6 md:h-6" />
               </motion.a>
             ))}
           </div>
 
           {/* Copyright */}
           <motion.div
-            className="text-center text-gray-300 text-xs"
+            className="text-center text-gray-200 text-xs md:text-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <p>© {new Date().getFullYear()} KARVENTURE INVESTMENT LIMITED. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Gathex Autospares. All rights reserved.</p>
           </motion.div>
         </motion.div>
       </div>
