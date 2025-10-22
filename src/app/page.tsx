@@ -595,12 +595,12 @@ const HeroSectionComponent = memo(() => {
           </div>
         </div>
 
-        <div className="absolute bottom-6 left-8 flex space-x-2 z-30">
+        <div className="absolute bottom-6 left-24 flex space-x-2 z-30">
           {heroSlides.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 transition-all duration-300 ${
                 index === currentSlide ? 'bg-red-600' : 'bg-white/50 hover:bg-white/70'
               }`}
               whileHover={{ scale: 1.2, boxShadow: "0 0 8px rgba(220, 38, 38, 0.5)" }}
