@@ -49,6 +49,7 @@ const Footer = () => {
         { text: "+254 748 094055", icon: HiPhone },
         { text: "+254 748 094055", icon: FaWhatsapp },
         { text: "Gathecha75@gmail.com", icon: Mail },
+        { text: "Grogantv001@gmail.com", icon: Mail },
       ],
     },
     {
