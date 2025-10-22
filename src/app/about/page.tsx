@@ -318,8 +318,8 @@ export default function AboutPage() {
         stats={aboutSection.stats}
         icon={aboutSection.icon}
         isReversed={true}
-        image1="/images/about.jpg"
-        image2="/images/engine.jpg.jpg"
+        image1="/images/about.jpeg"
+        image2="/images/engine.jpg"
       />
 
       {/* Section 2: Why Shop with Gathex Autospares */}
@@ -329,8 +329,8 @@ export default function AboutPage() {
         incentives={whyShopSection.incentives}
         icon={whyShopSection.icon}
         isReversed={false}
-        image1="/images/hero3.jpg"
-        image2="/images/hero5.jpg"
+        image1="/images/hero3.jpeg"
+        image2="/images/hero4.jpeg"
       />
     </div>
   );
