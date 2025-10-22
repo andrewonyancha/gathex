@@ -1,17 +1,12 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Head from 'next/head';
 import { RiCustomerService2Fill } from 'react-icons/ri';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import {
-  FaTools,
-  FaCar,
-  FaTachometerAlt,
-  FaLightbulb,
-} from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaTools, FaCar, FaTachometerAlt, FaLightbulb } from 'react-icons/fa';
 import { Users, Lightbulb, Play, CheckCircle, MoveDownIcon, Clock } from 'lucide-react';
 import { useModal } from '../components/ModalContext';
 
@@ -24,7 +19,6 @@ interface Product {
   image: string;
   category: string;
   subcategory: string;
-  keywords: string[];
 }
 
 interface HeroSlide {
@@ -106,10 +100,8 @@ const ContentSection = memo(
     contactText = 'Contact Us',
     subcategory,
   }: ContentSectionProps) => {
-    const { scrollYProgress } = useScroll();
-    const arrowOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-    const arrowScale = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
-    const arrowX = useTransform(scrollYProgress, [0, 0.2], [0, isReversed ? -10 : 10]);
+    const handleShopClick = useCallback(() => onShopClick?.(), [onShopClick]);
+    const handleContactClick = useCallback(() => onContactClick?.(), [onContactClick]);
 
     return (
       <section
@@ -120,107 +112,39 @@ const ContentSection = memo(
         <div className="container mx-auto px-4 sm:px-6">
           <div className={`grid lg:grid-cols-2 gap-4 md:gap-6 items-end ${isReversed ? 'lg:grid-flow-col-dense' : ''}`}>
             <motion.div
-              initial={{ opacity: 0, x: isReversed ? 80 : -80 }}
+              initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: '-50px' }}
               className={`${isReversed ? 'lg:col-start-2' : ''} h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] relative`}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                style={{ opacity: arrowOpacity, scale: arrowScale, x: arrowX }}
-                className={`absolute z-30 top-1/2 -translate-y-1/2 hidden lg:flex
-                  ${isReversed ? 'left-8 md:left-12' : 'right-8 md:right-12'}
-                  items-center space-x-2`}
-              >
-                {isReversed ? (
-                  <>
-                    <motion.div
-                      initial={{ rotate: 180 }}
-                      whileInView={{ rotate: 180 }}
-                      transition={{ duration: 0.6, delay: 0.8 }}
-                    >
-                      <Play className="w-8 h-8 lg:w-10 lg:h-10 text-red-600" />
-                    </motion.div>
-                    <motion.div
-                      className="w-12 md:w-16 h-1 bg-red-600"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '48px' }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                      viewport={{ once: true }}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <motion.div
-                      className="w-12 md:w-16 h-1 bg-red-600"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '48px' }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                      viewport={{ once: true }}
-                    />
-                    <motion.div
-                      initial={{ rotate: 0 }}
-                      whileInView={{ rotate: 0 }}
-                      transition={{ duration: 0.6, delay: 0.8 }}
-                    >
-                      <Play className="w-8 h-8 lg:w-10 lg:h-10 text-red-600" />
-                    </motion.div>
-                  </>
-                )}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                style={{ opacity: arrowOpacity }}
-                className={`absolute z-30 left-1/2 top-[80%] -translate-x-1/2 flex flex-col items-center space-y-2 lg:hidden`}
-              >
-                <MoveDownIcon className="w-6 h-6 text-red-600" />
-              </motion.div>
-
-              <div className="h-full relative overflow-hidden transition-duration-300">
-                <div className="absolute inset-0 bg-gray-200 animate-pulse" aria-hidden="true" />
-                <Image
-                  src={image}
-                  alt={`${title} auto parts for small cars in Kenya${subcategory ? ` - ${subcategory}` : ''}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  priority={isReversed && title === 'Engine Parts'}
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
-                />
-              </div>
+              <div className="absolute inset-0 bg-gray-200 animate-pulse" aria-hidden="true" />
+              <Image
+                src={image}
+                alt={`${title} auto parts for small cars in Kenya${subcategory ? ` - ${subcategory}` : ''}`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+                priority={isReversed && title === 'Engine Parts'}
+                placeholder="blur"
+                blurDataURL="/images/placeholder.jpg"
+              />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: isReversed ? -80 : 80 }}
+              initial={{ opacity: 0, x: isReversed ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: '-50px' }}
               className={`${isReversed ? 'lg:col-start-1 lg:mr-[-30px]' : 'lg:ml-[-30px]'} h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] flex flex-col justify-end relative z-20 mt-[35%] md:mt-[-60px] w-full max-w-[95%] mx-auto lg:max-w-none`}
             >
               <div className="bg-gray-100 p-4 md:p-6 lg:p-7 text-black">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '50px' }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="h-1.5 bg-red-600 mb-3 md:mb-4"
-                />
+                <div className="h-1.5 bg-red-600 mb-3 md:mb-4 w-12" />
 
                 <div className="flex items-center space-x-2 md:space-x-3 mb-3 md:mb-4">
-                  <motion.div
-                    className="w-8 h-8 md:w-9 md:h-9 bg-red-600 flex items-center justify-center flex-shrink-0"
-                    whileHover={{ scale: 1.1, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <div className="w-8 h-8 md:w-9 md:h-9 bg-red-600 flex items-center justify-center flex-shrink-0">
                     <Icon className="w-5 h-5 text-white" />
-                  </motion.div>
+                  </div>
                   <h2
                     id={`section-${title.replace(/\s+/g, '-')}`}
                     className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-black"
@@ -236,24 +160,10 @@ const ContentSection = memo(
                 {features && (
                   <div className="space-y-2 mb-4 md:mb-5">
                     {features.map((feature: string, idx: number) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -15, scale: 0.8 }}
-                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                        transition={{ duration: 0.4, delay: idx * 0.1 + 0.5 }}
-                        viewport={{ once: true }}
-                        className="flex items-center space-x-2"
-                      >
-                        <motion.div
-                          initial={{ rotate: 0 }}
-                          whileInView={{ rotate: [0, 360] }}
-                          transition={{ duration: 0.6, delay: idx * 0.1 + 0.7 }}
-                          viewport={{ once: true }}
-                        >
-                          <CheckCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
-                        </motion.div>
+                      <div key={idx} className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
                         <span className="text-black text-sm">{feature}</span>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -261,16 +171,10 @@ const ContentSection = memo(
                 {stats && (
                   <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-5">
                     {stats.map((stat: { value: string; label: string }, idx: number) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: idx * 0.1 + 0.5 }}
-                        viewport={{ once: true }}
-                      >
+                      <div key={idx}>
                         <div className="text-lg md:text-xl font-bold text-red-600 mb-1">{stat.value}</div>
                         <div className="text-black text-sm md:text-base">{stat.label}</div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -279,55 +183,38 @@ const ContentSection = memo(
                   <div className="space-y-3 mb-4 md:mb-5">
                     {supportItems.map(
                       (item: { icon: React.ComponentType<{ className?: string }>; title: string; desc: string }, idx: number) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: -15 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: idx * 0.1 + 0.5 }}
-                          viewport={{ once: true }}
-                          className="flex items-start space-x-2"
-                        >
-                          <motion.div
-                            className="w-8 h-8 bg-red-600 flex items-center justify-center flex-shrink-0 mt-0.5"
-                            whileHover={{ scale: 1.1, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                            transition={{ duration: 0.2 }}
-                          >
+                        <div key={idx} className="flex items-start space-x-2">
+                          <div className="w-8 h-8 bg-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                             <item.icon className="w-5 h-5 text-white" />
-                          </motion.div>
+                          </div>
                           <div>
                             <h3 className="text-black font-medium mb-0.5 text-sm md:text-base">{item.title}</h3>
                             <p className="text-black text-sm md:text-base">{item.desc}</p>
                           </div>
-                        </motion.div>
+                        </div>
                       ),
                     )}
                   </div>
                 )}
 
                 <div className="flex flex-col sm:flex-row gap-3 mt-4">
-                  <motion.button
-                    onClick={onShopClick}
-                    whileHover={{ scale: 1.05, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
+                    onClick={handleShopClick}
                     className="bg-red-600 text-white px-4 py-2 md:px-6 md:py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                     aria-label={`Shop ${title}${subcategory ? ` - ${subcategory}` : ''}`}
                   >
                     <span>{shopText}</span>
-                    <motion.div initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                      <Play className="w-5 h-5 text-white" />
-                    </motion.div>
-                  </motion.button>
+                    <Play className="w-5 h-5 text-white" />
+                  </button>
 
-                  <motion.button
-                    onClick={onContactClick}
-                    whileHover={{ scale: 1.05, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
+                    onClick={handleContactClick}
                     className="border border-red-600 text-red-600 px-4 py-2 md:px-6 md:py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-600 hover:text-white flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                     aria-label={`Contact us about ${title}${subcategory ? ` - ${subcategory}` : ''}`}
                   >
                     <span>{contactText}</span>
                     <RiCustomerService2Fill className="w-5 h-5 text-red-600 hover:text-white" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -344,18 +231,16 @@ const HeroSectionComponent = memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const { scrollYProgress } = useScroll();
   const { openProductModal, openContactModal } = useModal();
 
-  const pointerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-  const pointerScale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1]);
-  const pointerX = useTransform(scrollYProgress, [0, 0.1], [0, 10]);
+  const handleProductClick = useCallback(
+    (title: string) => openProductModal(title.replace(' Car Parts', '')),
+    [openProductModal],
+  );
+  const handleContactClick = useCallback(() => openContactModal(), [openContactModal]);
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-    };
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
     return () => window.removeEventListener('resize', checkIsMobile);
@@ -437,17 +322,13 @@ const HeroSectionComponent = memo(() => {
   return (
     <>
       <Head>
-        {heroSlides.map((slide, index) => (
-          <link
-            key={index}
-            rel="preload"
-            href={isMobile ? slide.mobileImage : slide.desktopImage}
-            as="image"
-          />
-        ))}
+        <link
+          rel="preload"
+          href={isMobile ? heroSlides[0].mobileImage : heroSlides[0].desktopImage}
+          as="image"
+        />
       </Head>
       <section
-        key={`hero-${isMobile}`}
         className="relative h-screen bg-white overflow-hidden"
         role="banner"
         aria-labelledby="hero-section"
@@ -459,10 +340,10 @@ const HeroSectionComponent = memo(() => {
                 index === currentSlide && (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
                     className="absolute inset-0"
                   >
                     <Image
@@ -475,7 +356,6 @@ const HeroSectionComponent = memo(() => {
                       placeholder="blur"
                       blurDataURL="/images/placeholder.jpg"
                       onLoadingComplete={() => setIsImageLoaded(true)}
-                      onError={() => console.error(`Failed to load image: ${isMobile ? slide.mobileImage : slide.desktopImage}`)}
                     />
                   </motion.div>
                 )
@@ -497,21 +377,6 @@ const HeroSectionComponent = memo(() => {
           <div className="absolute inset-0 max-md:bg-black/50 md:bg-gradient-to-r md:from-black md:to-transparent" />
         </div>
 
-        <motion.div
-          style={{ opacity: pointerOpacity, scale: pointerScale, x: pointerX }}
-          className="absolute z-30 right-1/2 top-1/2 -translate-y-1/2 translate-x-8 hidden lg:flex lg:items-center lg:space-x-2"
-        >
-          <div className="w-0 h-0 border-t-[12px] border-b-[12px] border-r-[16px] border-t-transparent border-b-transparent border-r-white" />
-          <div className="w-16 h-0.5 bg-red-600" />
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: pointerOpacity }}
-          className="absolute z-30 left-1/2 top-3/4 -translate-x-1/2 flex flex-col items-center space-y-2 lg:hidden"
-        >
-          <MoveDownIcon className="w-6 h-6 text-white" />
-        </motion.div>
-
         <div className="relative z-10 h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-2 gap-8 md:-mb-[10%] mb-[20%] items-center">
@@ -520,20 +385,15 @@ const HeroSectionComponent = memo(() => {
                   index === currentSlide && (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -50 }}
+                      initial={{ opacity: 0, x: -30 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 50 }}
-                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                      exit={{ opacity: 0, x: 30 }}
+                      transition={{ duration: 0.5 }}
                       className={`text-left ${isMobile ? 'max-w-md mx-auto text-center' : 'max-w-xl'}`}
                     >
                       {isMobile ? (
                         <>
-                          <motion.div
-                            className="flex justify-center mb-4 bg-white/20 p-1"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8 }}
-                          >
+                          <div className="flex justify-center mb-4 bg-white/20 p-1">
                             <Image
                               src="/images/logo.png"
                               alt="Gathex Autospares Logo"
@@ -542,7 +402,7 @@ const HeroSectionComponent = memo(() => {
                               className="h-24 w-auto"
                               priority
                             />
-                          </motion.div>
+                          </div>
 
                           <h1
                             id="hero-section"
@@ -551,27 +411,18 @@ const HeroSectionComponent = memo(() => {
                             {slide.title}
                           </h1>
                           <p className="text-white text-sm md:text-base mb-4 leading-relaxed">{slide.description}</p>
-                          <motion.button
-                            onClick={() => openProductModal(slide.title.replace(' Car Parts', ''))}
-                            whileHover={{ scale: 1.05, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                            whileTap={{ scale: 0.95 }}
+                          <button
+                            onClick={() => handleProductClick(slide.title)}
                             className="bg-red-600/80 text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                             aria-label={slide.cta}
                           >
                             <span>{slide.cta}</span>
-                            <motion.div initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                              <Play className="w-5 h-5 text-white" />
-                            </motion.div>
-                          </motion.button>
+                            <Play className="w-5 h-5 text-white" />
+                          </button>
                         </>
                       ) : (
                         <>
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: '60px' }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                            className="h-1.5 bg-red-600 mb-12"
-                          />
+                          <div className="h-1.5 bg-red-600 mb-12 w-16" />
                           <h1
                             id="hero-section"
                             className="text-4xl md:text-6xl font-serif font-bold text-white mb-2 leading-tight tracking-tight"
@@ -580,37 +431,26 @@ const HeroSectionComponent = memo(() => {
                           </h1>
                           <p className="text-white text-base mb-6 leading-relaxed max-w-lg">{slide.description}</p>
                           <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                            <motion.button
-                              onClick={() => openProductModal(slide.title.replace(' Car Parts', ''))}
-                              whileHover={{ scale: 1.05, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                              whileTap={{ scale: 0.95 }}
+                            <button
+                              onClick={() => handleProductClick(slide.title)}
                               className="bg-white px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                               aria-label={slide.cta}
                             >
                               <span>{slide.cta}</span>
-                              <motion.div initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                                <Play className="w-5 h-5" />
-                              </motion.div>
-                            </motion.button>
-                            <motion.button
-                              onClick={() => openContactModal()}
-                              whileHover={{ scale: 1.05, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
-                              whileTap={{ scale: 0.95 }}
+                              <Play className="w-5 h-5" />
+                            </button>
+                            <button
+                              onClick={handleContactClick}
                               className="border border-white text-white px-6 py-3 md:px-8 md:py-4 font-medium tracking-wide transition-all duration-300 hover:bg-red-600 hover:text-white flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                               aria-label="Contact Us"
                             >
                               <span>Contact Us</span>
                               <RiCustomerService2Fill className="w-5 h-5 text-white" />
-                            </motion.button>
+                            </button>
                           </div>
-                          <motion.div
-                            className="text-red-600 text-sm md:text-base font-medium tracking-wider"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                          >
+                          <div className="text-red-600 text-sm md:text-base font-medium tracking-wider">
                             {slide.stats}
-                          </motion.div>
+                          </div>
                         </>
                       )}
                     </motion.div>
@@ -623,13 +463,12 @@ const HeroSectionComponent = memo(() => {
 
           <div className="absolute bottom-6 left-24 flex space-x-2 z-30">
             {heroSlides.map((_, index) => (
-              <motion.button
+              <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-2 h-2 transition-all duration-300 ${
                   index === currentSlide ? 'bg-red-600' : 'bg-white/50 hover:bg-white/70'
                 }`}
-                whileHover={{ scale: 1.2, boxShadow: '0 0 8px rgba(220, 38, 38, 0.5)' }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -665,7 +504,6 @@ export default function LandingPage() {
       image: PRODUCT_IMAGES[0],
       category: 'engine-parts',
       subcategory: 'engine',
-      keywords: ['auto engine parts', 'gearbox spares', 'performance turbo', 'Nairobi car parts'],
     },
     {
       title: 'Brake & Steering Parts',
@@ -676,7 +514,6 @@ export default function LandingPage() {
       image: PRODUCT_IMAGES[1],
       category: 'brake-steering',
       subcategory: 'brake-steering',
-      keywords: ['car brake pads', 'steering spares', 'performance brakes', 'Kenya auto parts'],
     },
     {
       title: 'Suspension & Body Parts',
@@ -687,7 +524,6 @@ export default function LandingPage() {
       image: PRODUCT_IMAGES[2],
       category: 'suspension-body',
       subcategory: 'suspension-body',
-      keywords: ['car suspension parts', 'body panels', 'performance shocks', 'Nairobi spare parts'],
     },
     {
       title: 'Electrical & Light Parts',
@@ -698,7 +534,6 @@ export default function LandingPage() {
       image: PRODUCT_IMAGES[3],
       category: 'electrical-light',
       subcategory: 'electrical-light',
-      keywords: ['car batteries', 'LED headlights', 'auto sensors', 'Kenya car spares'],
     },
   ];
 
@@ -745,7 +580,7 @@ export default function LandingPage() {
           image={product.image}
           isReversed={index % 2 === 0}
           onShopClick={() => openProductModal(undefined, product.category, product.subcategory)}
-          onContactClick={() => openContactModal()}
+          onContactClick={openContactModal}
           shopText="Shop Now"
           contactText="Contact Us"
           category={product.category}
@@ -762,7 +597,7 @@ export default function LandingPage() {
         stats={aboutSection.stats}
         isReversed={true}
         onShopClick={undefined}
-        onContactClick={() => openContactModal()}
+        onContactClick={openContactModal}
         shopText="Our Story"
         contactText="Contact Us"
       />
@@ -775,7 +610,7 @@ export default function LandingPage() {
         supportItems={helpSection.supportItems}
         isReversed={false}
         onShopClick={undefined}
-        onContactClick={() => openContactModal()}
+        onContactClick={openContactModal}
         shopText="Visit Help Center"
         contactText="Contact Us"
       />
