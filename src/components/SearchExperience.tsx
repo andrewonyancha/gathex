@@ -246,15 +246,15 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; on
             whileHover={{ scale: 1.1, rotate: 90, boxShadow: '0 0 12px rgba(220, 38, 38, 0.6)' }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="fixed top-4 right-4 z-[60] w-14 h-14 flex items-center justify-center bg-red-600/20 hover:bg-red-600/40  -full backdrop-blur-sm transition-all duration-200 tooltip"
+            className="fixed md:top-4 top-0.5 md:right-4 right-0.5 z-[60] md:w-14 w-6 md:h-14 h-6 flex items-center justify-center bg-red-600/20 hover:bg-red-600/40  -full backdrop-blur-sm transition-all duration-200 tooltip"
             aria-label="Close search overlay"
           >
-            <X size={28} className="text-white hover:text-red-300" />
+            <X size={24} className="text-white hover:text-red-300" />
           </motion.button>
 
           {/* Main Search Interface */}
           <motion.div
-            className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-20"
+            className="fixed inset-0 z-50 flex items-start justify-center px-4 md:pt-20 pt-4"
             variants={shouldReduceMotion ? containerVariants : contentVariants}
             initial="hidden"
             animate="visible"
@@ -400,7 +400,7 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; on
 
                   {/* Categories */}
                   <motion.div 
-                    className="mt-6"
+                    className="mt-6 hidden md:block"
                     variants={itemVariants}
                     custom={0}
                     initial="hidden"
