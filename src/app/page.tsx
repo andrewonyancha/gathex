@@ -410,14 +410,14 @@ const HeroSectionComponent = memo(() => {
                           >
                             {slide.title}
                           </h1>
-                          <p className="text-white text-sm md:text-base mb-4 leading-relaxed">{slide.description}</p>
+                          {/* <p className="text-white text-sm md:text-base mb-4 leading-relaxed">{slide.description}</p> */}
                           <button
                             onClick={() => handleProductClick(slide.title)}
-                            className="bg-red-600/80 text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
+                            className="bg-red-600/50 text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 flex items-center justify-center space-x-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-600"
                             aria-label={slide.cta}
                           >
                             <span>{slide.cta}</span>
-                            <Play className="w-5 h-5 text-white" />
+                            <Play className="w-4 h-4 text-white" />
                           </button>
                         </>
                       ) : (
