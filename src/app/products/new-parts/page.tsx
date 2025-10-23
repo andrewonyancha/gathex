@@ -508,8 +508,8 @@ function NewPartsContent() {
                       </div>
                       <div className="p-3 flex-1 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
-                          <span className="text-xs text-red-600 font-bold uppercase tracking-wide">{product.brand}</span>
-                          <p className="text-red-600 font-bold text-lg">KSh {product.price.toLocaleString()}</p>
+                          <span className="text-xs text-green-700 font-bold uppercase">{product.brand}</span>
+                          <p className="text-red-600 font-bold md:text-lg text-sm">KSh {product.price.toLocaleString()}</p>
                         </div>
                         <h3 className="font-semibold text-gray-900 text-sm mb-3 line-clamp-2 group-hover:text-red-600 transition-colors flex-1">
                           {product.name}

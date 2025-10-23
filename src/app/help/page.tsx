@@ -88,7 +88,7 @@ export default function HelpCenter() {
                         onClick={() => handleContactAction(img.action)}
                         whileHover={{ scale: 1.05, backgroundColor: "#b91c1c" }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-white/70 text-green-800   px-4 py-2 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 hover:text-white text-sm flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="bg-white text-green-800   px-4 py-2 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 hover:text-white text-sm flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-red-600"
                         aria-label={img.alt}
                       >
                         <img.icon className="w-4 h-4 text-green-800 hover:text-white transition-colors duration-300" />
@@ -115,7 +115,7 @@ export default function HelpCenter() {
                         onClick={() => handleContactAction(img.action)}
                         whileHover={{ scale: 1.05, backgroundColor: "#b91c1c" }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-white/70 text-red-600 px-4 py-2 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 hover:text-white text-sm flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="bg-white text-red-600 px-4 py-2 font-medium tracking-wide transition-all duration-300 hover:bg-red-500 hover:text-white text-sm flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-red-600"
                         aria-label={img.alt}
                       >
                         <img.icon className="w-4 h-4 text-red-600 hover:text-white transition-colors duration-300" />
