@@ -406,7 +406,7 @@ const HeroSectionComponent = memo(() => {
 
                           <h1
                             id="hero-section"
-                            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-snug tracking-tight"
+                            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-6 leading-snug tracking-tight"
                           >
                             {slide.title}
                           </h1>
