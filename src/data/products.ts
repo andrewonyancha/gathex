@@ -92,8 +92,110 @@ export const products: Product[] = [
     stock: 50,
     subcategory: 'engine',
   },
- 
- 
+  // Added on 10/23/2025
+  {
+    id: 'np-007',
+    name: 'Original Brake Pad for Toyota Hilux',
+    description: 'Original brake pads designed specifically for Toyota Hilux, ensuring optimal braking performance.',
+    price: 0,
+    image: '/images/products/toyota-hilux-brake-pads.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['OEM quality', 'High durability', 'Set of 4', '1-year warranty'],
+    stock: 25,
+    subcategory: 'brake-steering',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-008',
+    name: 'Edge Guard Tape',
+    description: 'Edge guard tape for all car models, available in multiple colors to protect door edges.',
+    price: 0,
+    image: '/images/products/edge-guard-tape.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['Multiple color options', 'Easy to apply', 'Weather-resistant'],
+    stock: 100,
+    subcategory: 'suspension-body',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-009',
+    name: 'CVT Transmission Oil for Subaru',
+    description: 'High-quality CVT transmission oil designed for Subaru vehicles, ensuring smooth performance.',
+    price: 0,
+    image: '/images/products/subaru-cvt-oil.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['Optimized for CVT', 'High thermal stability', '1-year warranty'],
+    stock: 30,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-010',
+    name: 'Service Package for Toyota Fielder and NZE',
+    description: 'Comprehensive service package including 5W40 engine oil, original air filter, spark plug, oil filter, and ATF transmission oil for Toyota Fielder and NZE.',
+    price: 0,
+    image: '/images/products/toyota-service-package.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['Complete service kit', 'OEM quality', '1-year warranty'],
+    stock: 10,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-011',
+    name: 'Short Iridium Spark Plug',
+    description: 'High-performance short iridium spark plug for enhanced engine efficiency.',
+    price: 0,
+    image: '/images/products/short-iridium-spark-plug.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['Iridium tip', 'Improved fuel efficiency', 'Long lifespan'],
+    stock: 45,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-012',
+    name: 'Toyota CVT Transmission Oil',
+    description: 'Original CVT transmission oil for Toyota vehicles, ensuring smooth gear shifts.',
+    price: 0,
+    image: '/images/products/toyota-cvt-oil.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['OEM quality', 'High thermal stability', '1-year warranty'],
+    stock: 35,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-013',
+    name: 'Rack End for NZE and Probox',
+    description: 'Durable rack end for Toyota NZE and Probox, ensuring reliable steering performance.',
+    price: 0,
+    image: '/images/products/555.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['High durability', 'Precision fit', '1-year warranty'],
+    stock: 15,
+    subcategory: 'suspension-body',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'np-014',
+    name: 'Ceramic Brake Pads',
+    description: 'High-performance ceramic brake pads for superior stopping power and durability.',
+    price: 0,
+    image: '/images/products/ceramic-brake-pads.jpeg', // Placeholder - update image here
+    category: 'new',
+    brand: 'in stock',
+    features: ['Low dust', 'High heat resistance', 'Set of 4', '1-year warranty'],
+    stock: 20,
+    subcategory: 'brake-steering',
+  },
   // Ex-Japan Parts
   {
     id: 'ej-001',
@@ -172,14 +274,117 @@ export const products: Product[] = [
     name: 'SK20HR11 Spark Plug',
     description: 'Used SK20HR11 spark plug from Japan, optimized for engine efficiency.',
     price: 600,
-    image: '/images/products/sk20hr11-spark-plug.jpeg', // Placeholder, to be updated later
+    image: '/images/products/sk20r11-spark-plug.jpeg', // Placeholder, to be updated later
     category: 'ex-japan',
     brand: 'in stock',
     features: ['Iridium tip', 'High performance', '6-month warranty'],
     stock: 40,
     subcategory: 'engine',
   },
-  
+  // Added on 10/23/2025
+  {
+    id: 'ej-008',
+    name: 'Original Brake Pad for Toyota Hilux',
+    description: 'Used original brake pads for Toyota Hilux, sourced from Japan, tested for performance.',
+    price: 0,
+    image: '/images/products/toyota-hilux-brake-pads.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Low wear', 'OEM quality', '6-month warranty'],
+    stock: 20,
+    subcategory: 'brake-steering',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-009',
+    name: 'Edge Guard Tape',
+    description: 'Used edge guard tape for all car models, sourced from Japan, available in multiple colors.',
+    price: 0,
+    image: '/images/products/edge-guard-tape.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Multiple color options', 'Tested for adhesion', '6-month warranty'],
+    stock: 80,
+    subcategory: 'suspension-body',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-010',
+    name: 'CVT Transmission Oil for Subaru',
+    description: 'Used CVT transmission oil for Subaru, sourced from Japan, tested for quality.',
+    price: 0,
+    image: '/images/products/subaru-cvt-oil.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['High thermal stability', 'Tested for performance', '6-month warranty'],
+    stock: 25,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-011',
+    name: 'Service Package for Toyota Fielder and NZE',
+    description: 'Used service package including 5W40 engine oil, air filter, spark plug, oil filter, and ATF transmission oil for Toyota Fielder and NZE, sourced from Japan.',
+    price: 0,
+    image: '/images/products/toyota-service-package.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Complete service kit', 'Tested for reliability', '6-month warranty'],
+    stock: 8,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-012',
+    name: 'Short Iridium Spark Plug',
+    description: 'Used short iridium spark plug from Japan, tested for reliable ignition.',
+    price: 0,
+    image: '/images/products/short-iridium-spark-plug.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Iridium tip', 'Tested for performance', '6-month warranty'],
+    stock: 35,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-013',
+    name: 'Toyota CVT Transmission Oil',
+    description: 'Used CVT transmission oil for Toyota vehicles, sourced from Japan, tested for quality.',
+    price: 0,
+    image: '/images/products/toyota-cvt-oil.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['OEM quality', 'Tested for performance', '6-month warranty'],
+    stock: 30,
+    subcategory: 'engine',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-014',
+    name: 'Rack End for NZE and Probox',
+    description: 'Used rack end for Toyota NZE and Probox, sourced from Japan, tested for reliability.',
+    price: 0,
+    image: '/images/products/555.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Low mileage', 'High durability', '6-month warranty'],
+    stock: 12,
+    subcategory: 'suspension-body',
+  },
+  // Added on 10/23/2025
+  {
+    id: 'ej-015',
+    name: 'Ceramic Brake Pads',
+    description: 'Used ceramic brake pads sourced from Japan, offering superior stopping power.',
+    price: 0,
+    image: '/images/products/ceramic-brake-pads.jpeg', // Placeholder - update image here
+    category: 'ex-japan',
+    brand: 'in stock',
+    features: ['Low wear', 'High heat resistance', '6-month warranty'],
+    stock: 15,
+    subcategory: 'brake-steering',
+  },
 ];
 
 // Function to get products by category (mimic async fetch for future dynamic)

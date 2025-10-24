@@ -193,13 +193,13 @@ export default function Header() {
     closeContactModal();
     switch (type) {
       case 'whatsapp':
-        window.open('https://wa.me/+254700393363', '_blank', 'noopener,noreferrer');
+        window.open('https://wa.me/+254 748 094055', '_blank', 'noopener,noreferrer');
         break;
       case 'phone':
-        window.location.href = 'tel:+254700393363';
+        window.location.href = 'tel:+254 748 094055';
         break;
       case 'email':
-        window.location.href = 'mailto:info@gathexautospares.com';
+        window.location.href = 'mailto:Gathecha75@gmail.com';
         break;
       case 'chat':
         router.push('/chat');

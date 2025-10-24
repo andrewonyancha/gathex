@@ -368,7 +368,7 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; on
                         <p className="text-red-100 mb-4">No results found for &quot;{query}&quot;. Contact us for assistance!</p>
                         <div className="flex justify-center gap-4 text-sm">
                           <a
-                            href="https://wa.me/+254700393363"
+                            href="https://wa.me/+254748094055"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-5 py-3 bg-green-600/50 hover:bg-green-600/70  -xl text-white flex items-center gap-2"
@@ -378,7 +378,7 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; on
                             WhatsApp
                           </a>
                           <a
-                            href="tel:+254700393363"
+                            href="tel:+254748094055"
                             className="px-5 py-3 bg-blue-600/50 hover:bg-blue-600/70  -xl text-white flex items-center gap-2"
                             aria-label="Contact via Phone"
                           >
@@ -386,7 +386,7 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; on
                             Call
                           </a>
                           <a
-                            href="mailto:info@gathexautospares.com"
+                            href="mailto:Gathecha75@gmail.com"
                             className="px-5 py-3 bg-red-600/50 hover:bg-red-600/70  -xl text-white flex items-center gap-2"
                             aria-label="Contact via Email"
                           >

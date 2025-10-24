@@ -185,7 +185,7 @@ function SearchContent() {
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm max-w-lg mx-auto">
                   <motion.a
-                    href="https://wa.me/+254700393363"
+                    href="https://wa.me/254748094055"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-1 bg-gray-200 text-black font text-sm hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
@@ -197,7 +197,7 @@ function SearchContent() {
                     WhatsApp
                   </motion.a>
                   <motion.a
-                    href="tel:+254700393363"
+                    href="tel:+254748094055"
                     className="px-6 py-1 bg-gray-200 text-black font hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
                     aria-label="Contact via Phone"
                     whileHover={{ scale: 1.05 }}
@@ -207,7 +207,7 @@ function SearchContent() {
                     Call Us
                   </motion.a>
                   <motion.a
-                    href="mailto:info@gathexautospares.com"
+                    href="mailto:Gathecha75@gmail.com"
                     className="px-6 py-1 bg-gray-200 text-black hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
                     aria-label="Contact via Email"
                     whileHover={{ scale: 1.05 }}
